@@ -2,12 +2,13 @@ package com.andrew.automation.test.flow;
 
 import com.andrew.automation.page.serai.GuidancePage;
 import com.andrew.automation.page.serai.LoginPage;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 @Component
-public class LoginFlowTestCase extends BaseFlowTestCase {
+public class TC001_LoginFlowTestCase extends BaseFlowTestCase {
 
     @Autowired
     private GuidancePage guidancePage;
@@ -15,7 +16,7 @@ public class LoginFlowTestCase extends BaseFlowTestCase {
     @Autowired
     private LoginPage loginPage;
 
-    private LoginFlowTestCase(){
+    private TC001_LoginFlowTestCase(){
         super();
     }
 
@@ -27,7 +28,10 @@ public class LoginFlowTestCase extends BaseFlowTestCase {
         //2. Fill Password
         loginPage.getEt_pwd().sendKeys("Pp12345!");
         //3. Click login Button
-        loginPage.getBtn_login().click();
+        waitAndClick(loginPage.getBtn_login(), ExpectedConditions.elementToBeClickable(loginPage.getBtn_login()));
+
+        //4. clearLocalStorageAndRefresh
+//        clearLocalStorageAndRefresh();
     }
 
 }

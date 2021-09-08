@@ -1,10 +1,16 @@
 package com.andrew.automation.page.serai;
 
 
+import com.andrew.automation.driver.Chrome;
 import lombok.Data;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 @Component
 @Data
@@ -49,6 +55,14 @@ public class LoginPage {
 
     @FindBy(xpath = "//input[@type='checkbox']")
     WebElement cb_keep_login;
+
+    @Autowired
+    private Chrome chrome;
+
+    @PostConstruct
+    private void postConstruct(){
+        PageFactory.initElements(chrome.getDriver(), this);
+    }
 
 //    @Override
 //    public boolean isOn() {
