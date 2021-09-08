@@ -1,24 +1,41 @@
 package com.andrew.automation;
 
-import com.andrew.automation.test.flow.TC001_LoginFlowTestCase;
+import com.andrew.automation.testcase.base.ChromeRunner;
+import com.andrew.automation.testcase.base.FirefoxRunner;
+import com.andrew.automation.testcase.runner.FullTestRunner;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.annotation.Resource;
+
+@Slf4j
 @SpringBootTest
 public class NNTAutomationTestApplicationTests {
 
-    @Autowired
-    private TC001_LoginFlowTestCase tc001_loginFlowTestCase;
+    @Resource(type = FullTestRunner.class)
+    ChromeRunner chromeFullTestRunner;
+
+    @Resource(type = FullTestRunner.class)
+    FirefoxRunner firefoxFullTestRunner;
 
     @Test
-    void fullTest() {
-        tc001_loginFlowTestCase.start();
+    void fullTest() throws Exception {
+        try{
+            chromeFullTestRunner.chromeDriverSetup();
+            chromeFullTestRunner.start();
+
+//            firefoxFullTestRunner.fireFoxDriverSetup();
+//            firefoxFullTestRunner.start();
+        }catch(Exception e){
+            log.error("Full test error : ", e);
+            throw e;
+        }
     }
 
     @Test
     void loginRegressionTest() {
-        tc001_loginFlowTestCase.start();
+
     }
 
 }

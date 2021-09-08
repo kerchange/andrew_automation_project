@@ -1,13 +1,10 @@
-package com.andrew.automation.page.serai;
+package com.andrew.automation.page.onboarding;
 
-//import com.andrew.automation.page.BasePage;
+import com.andrew.automation.page.base.Page;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.springframework.stereotype.Component;
 
-@Component
-public class GuidancePage  {
-
+public class GuidancePage extends Page {
 
     //Text elements
     @FindBy(css = ".MuiTypography-root.jss44.MuiTypography-subtitle1")
@@ -30,8 +27,4 @@ public class GuidancePage  {
     @FindBy(id = "stepProgressBar")
     WebElement progress_bar;
 
-//    @Override
-//    public boolean isOn() {
-//        return this.wait.until((webDriver) -> this.progress_bar.isDisplayed());
-//    }
 }

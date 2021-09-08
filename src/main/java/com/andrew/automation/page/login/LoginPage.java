@@ -1,20 +1,15 @@
-package com.andrew.automation.page.serai;
+package com.andrew.automation.page.login;
 
 
-import com.andrew.automation.driver.Chrome;
+import com.andrew.automation.page.base.Page;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-
-@Component
 @Data
-public class LoginPage {
+@EqualsAndHashCode(callSuper=true)
+public class LoginPage extends Page {
 
     //Text Element
     @FindBy(css = ".MuiTypography-root.jss10.MuiTypography-h5")
@@ -56,16 +51,4 @@ public class LoginPage {
     @FindBy(xpath = "//input[@type='checkbox']")
     WebElement cb_keep_login;
 
-    @Autowired
-    private Chrome chrome;
-
-    @PostConstruct
-    private void postConstruct(){
-        PageFactory.initElements(chrome.getDriver(), this);
-    }
-
-//    @Override
-//    public boolean isOn() {
-//        return this.wait.until((webDriver) -> this.btn_login.isDisplayed());
-//    }
 }
