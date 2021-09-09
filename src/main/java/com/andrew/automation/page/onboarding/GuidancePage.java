@@ -1,10 +1,15 @@
 package com.andrew.automation.page.onboarding;
 
 import com.andrew.automation.page.base.Page;
+import lombok.Data;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+@Data
 public class GuidancePage extends Page {
+
+    @FindBy(id = "root")
+    WebElement root;
 
     //Text elements
     @FindBy(css = ".MuiTypography-root.jss44.MuiTypography-subtitle1")
