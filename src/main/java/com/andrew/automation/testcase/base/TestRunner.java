@@ -2,28 +2,34 @@ package com.andrew.automation.testcase.base;
 
 import com.andrew.automation.driver.Browser;
 import com.andrew.automation.driver.DriverBuilder;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 
-public class TestRunner implements ChromeRunner, FirefoxRunner, SafariRunner {
+@Slf4j
+public class TestRunner<T extends TestRunner> implements ChromeRunner, FirefoxRunner, SafariRunner {
 
     private Browser browser;
     @Override
     public void start() throws Exception {
     }
 
-    @Override
-    public void safariBrowserSetup() {
-        this.browser = Browser.Safari;
-    }
 
     @Override
-    public void firefoxBrowserSetup() {
-        this.browser = Browser.Firefox;
-    }
-
-    @Override
-    public void chromeBrowserSetup() {
+    public T chromeSetup() {
         this.browser = Browser.Chrome;
+        return (T)this;
+    }
+
+    @Override
+    public T safariSetup() {
+        this.browser = Browser.Safari;
+        return (T)this;
+    }
+
+    @Override
+    public T firefoxSetup() {
+        this.browser = Browser.Firefox;
+        return (T)this;
     }
 
     protected WebDriver craeteDriver() throws Exception {
@@ -32,8 +38,8 @@ public class TestRunner implements ChromeRunner, FirefoxRunner, SafariRunner {
             driver = new DriverBuilder().browser(this.browser)
                     .path("src/main/resources/chromedriver_m1_v92")
                     .option("--no-sandbox")
-//                .option("--headless")
-//                .option("--disable-gpu")
+                    .option("--headless")
+                    .option("--disable-gpu")
                     .build();
         }else if(Browser.Safari.equals(this.browser)){
             //TODO

@@ -1,12 +1,10 @@
 package com.andrew.automation.testcase.base;
 
-import com.andrew.automation.driver.Browser;
-
-public interface SafariRunner {
+public interface SafariRunner <T extends TestRunner> {
 
     public void start() throws Exception;
 
-    public void safariBrowserSetup();
+    public <T extends TestRunner> T safariSetup();
 
 
 }

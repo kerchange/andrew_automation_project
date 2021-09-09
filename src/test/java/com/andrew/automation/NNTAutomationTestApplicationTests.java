@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 public class NNTAutomationTestApplicationTests {
 
     @Resource(type = FullTestRunner.class)
-    ChromeRunner chromeFullTestRunner;
+    ChromeRunner<FullTestRunner> chromeFullTestRunner;
 
     @Resource(type = FullTestRunner.class)
     FirefoxRunner firefoxFullTestRunner;
@@ -22,11 +22,8 @@ public class NNTAutomationTestApplicationTests {
     @Test
     void fullTest() throws Exception {
         try{
-            chromeFullTestRunner.chromeBrowserSetup();
-            chromeFullTestRunner.start();
-
-//            firefoxFullTestRunner.firefoxBrowserSetup();
-//            firefoxFullTestRunner.start();
+            chromeFullTestRunner.chromeSetup().start();
+            firefoxFullTestRunner.firefoxSetup().start();
         }catch(Exception e){
             log.error("Full test error : ", e);
             throw e;

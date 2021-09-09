@@ -1,11 +1,11 @@
 package com.andrew.automation.testcase.base;
 
-public interface FirefoxRunner {
+public interface FirefoxRunner<T extends TestRunner>{
 
 
     public void start() throws Exception;
 
-    public void firefoxBrowserSetup();
+    public <T extends TestRunner> T firefoxSetup();
 
 
 }
