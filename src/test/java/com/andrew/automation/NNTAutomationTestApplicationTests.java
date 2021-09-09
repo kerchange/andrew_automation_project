@@ -22,10 +22,10 @@ public class NNTAutomationTestApplicationTests {
     @Test
     void fullTest() throws Exception {
         try{
-            chromeFullTestRunner.chromeDriverSetup();
+            chromeFullTestRunner.chromeBrowserSetup();
             chromeFullTestRunner.start();
 
-//            firefoxFullTestRunner.fireFoxDriverSetup();
+//            firefoxFullTestRunner.firefoxBrowserSetup();
 //            firefoxFullTestRunner.start();
         }catch(Exception e){
             log.error("Full test error : ", e);

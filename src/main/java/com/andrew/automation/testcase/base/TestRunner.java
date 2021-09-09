@@ -4,27 +4,43 @@ import com.andrew.automation.driver.Browser;
 import com.andrew.automation.driver.DriverBuilder;
 import org.openqa.selenium.WebDriver;
 
-public abstract class TestRunner implements ChromeRunner, FirefoxRunner {
+public class TestRunner implements ChromeRunner, FirefoxRunner, SafariRunner {
 
-    protected WebDriver driver;
-
+    private Browser browser;
     @Override
     public void start() throws Exception {
-        if(driver == null){ throw new Exception("driver is not setup");}
     }
 
     @Override
-    public void fireFoxDriverSetup() throws Exception {
-
+    public void safariBrowserSetup() {
+        this.browser = Browser.Safari;
     }
 
     @Override
-    public void chromeDriverSetup() throws Exception {
-        driver = new DriverBuilder().browser(Browser.Chrome)
-                .path("src/main/resources/chromedriver_m1_v92")
-                .option("--no-sandbox")
+    public void firefoxBrowserSetup() {
+        this.browser = Browser.Firefox;
+    }
+
+    @Override
+    public void chromeBrowserSetup() {
+        this.browser = Browser.Chrome;
+    }
+
+    protected WebDriver craeteDriver() throws Exception {
+        WebDriver driver = null;
+        if(Browser.Chrome.equals(getBrowser())){
+            driver = new DriverBuilder().browser(getBrowser())
+                    .path("src/main/resources/chromedriver_m1_v92")
+                    .option("--no-sandbox")
 //                .option("--headless")
 //                .option("--disable-gpu")
-                .build();
+                    .build();
+        }else if(Browser.Safari.equals(getBrowser())){
+            //TODO
+        }else if(Browser.Firefox.equals(getBrowser())) {
+            //TODO
+        }
+        return driver;
     }
+
 }
