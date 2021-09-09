@@ -1,5 +1,6 @@
 package com.andrew.automation.listener;
 
+import com.andrew.automation.driver.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +8,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
 public class WebEventListener implements WebDriverEventListener {
+
+    private Browser browser;
+
+    public WebEventListener(Browser browser){
+        this.browser = browser;
+    }
+
     @Override
     public void beforeAlertAccept(WebDriver driver) {
 
