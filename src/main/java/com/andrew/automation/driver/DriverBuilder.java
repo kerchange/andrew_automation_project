@@ -1,14 +1,11 @@
 package com.andrew.automation.driver;
 
 import com.andrew.automation.listener.WebEventListener;
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,19 +15,25 @@ public class DriverBuilder {
     Browser browser;
     EventFiringWebDriver eventFiringWebDriver;
     Integer timeout = 600;
+
     //Chrome
     ChromeOptions chromeOptions;
     Boolean setChromeSystemProperties = false;
 
     //Firefox
 
+    //Safari
+
 
     public DriverBuilder browser(Browser browserEnum){
         browser = browserEnum;
         if(Browser.Chrome.equals(browserEnum)){
+            //Init Chrome
             chromeOptions = new ChromeOptions();
         } else if (Browser.Firefox.equals(browserEnum)){
             //TODO
+        } else if (Browser.Firefox.equals(browserEnum)) {
+
         }
         return this;
     }
@@ -42,6 +45,8 @@ public class DriverBuilder {
         if(Browser.Chrome.equals(browser)){
             chromeOptions.addArguments(option);
         } else if (Browser.Firefox.equals(browser)){
+            //TODO
+        } else if (Browser.Safari.equals(browser)) {
             //TODO
         }
         return this;
@@ -56,6 +61,8 @@ public class DriverBuilder {
             setChromeSystemProperties = true;
         } else if (Browser.Firefox.equals(browser)){
             //TODO
+        }else if (Browser.Safari.equals(browser)) {
+
         }
         return this;
     }
@@ -70,8 +77,8 @@ public class DriverBuilder {
             }
             driver = new ChromeDriver(chromeOptions);
             eventFiringWebDriver = new EventFiringWebDriver(driver);
-            eventFiringWebDriver.register(new WebEventListener());
-            eventFiringWebDriver.manage().window().maximize();
+            eventFiringWebDriver.register(new WebEventListener(browser));
+            eventFiringWebDriver.manage().window().maximize();//TODO
             eventFiringWebDriver.manage().deleteAllCookies();
             eventFiringWebDriver.manage().timeouts().implicitlyWait(timeout,TimeUnit.SECONDS);
         } else if (Browser.Firefox.equals(browser)){
@@ -86,7 +93,7 @@ public class DriverBuilder {
     }
 
     public DriverBuilder timeout(int timeoutPerSecond){
-        eventFiringWebDriver.manage().timeouts().implicitlyWait(timeoutPerSecond,TimeUnit.SECONDS);
+        timeout = timeoutPerSecond;
         return this;
     }
 }
