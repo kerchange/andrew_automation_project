@@ -4,6 +4,5 @@ public interface ChromeRunner {
 
     public void start() throws Exception;
 
-    public void chromeDriverSetup() throws Exception;
-
+    public void chromeBrowserSetup();
 }
