@@ -28,16 +28,16 @@ public class TestRunner implements ChromeRunner, FirefoxRunner, SafariRunner {
 
     protected WebDriver craeteDriver() throws Exception {
         WebDriver driver = null;
-        if(Browser.Chrome.equals(getBrowser())){
-            driver = new DriverBuilder().browser(getBrowser())
+        if(Browser.Chrome.equals(this.browser)){
+            driver = new DriverBuilder().browser(this.browser)
                     .path("src/main/resources/chromedriver_m1_v92")
                     .option("--no-sandbox")
 //                .option("--headless")
 //                .option("--disable-gpu")
                     .build();
-        }else if(Browser.Safari.equals(getBrowser())){
+        }else if(Browser.Safari.equals(this.browser)){
             //TODO
-        }else if(Browser.Firefox.equals(getBrowser())) {
+        }else if(Browser.Firefox.equals(this.browser)) {
             //TODO
         }
         return driver;
