@@ -18,13 +18,15 @@ public class TestCaseBuilder<T extends TestCase> {
         return this;
     }
 
-    public TestCaseBuilder page(Class page) throws Exception {
-        Object aPage = page.getDeclaredConstructor().newInstance();
-        log.info("Class: " + page);
-        if(!(aPage instanceof Page)){
-            throw new Exception("the Class not extends page Class....");
+    public TestCaseBuilder pages(Class... pages) throws Exception {
+        for(Class page : pages){
+            Object aPage = page.getDeclaredConstructor().newInstance();
+            log.info("Class: " + page);
+            if(!(aPage instanceof Page)){
+                throw new Exception("the Class not extends page Class....");
+            }
+            testCase.getPages().put(page, aPage);
         }
-        testCase.getPages().put(page, aPage);
         return this;
     }
 
