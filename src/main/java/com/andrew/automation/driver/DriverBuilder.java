@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
+import java.sql.Driver;
 import java.util.concurrent.TimeUnit;
 
 public class DriverBuilder {
@@ -15,6 +16,8 @@ public class DriverBuilder {
     Browser browser;
     EventFiringWebDriver eventFiringWebDriver;
     Integer timeout = 600;
+    Boolean isResponsive = false;
+    Integer width, height;
 
     //Chrome
     ChromeOptions chromeOptions;
@@ -32,7 +35,7 @@ public class DriverBuilder {
             chromeOptions = new ChromeOptions();
         } else if (Browser.Firefox.equals(browserEnum)){
             //TODO
-        } else if (Browser.Firefox.equals(browserEnum)) {
+        } else if (Browser.Safari.equals(browserEnum)) {
 
         }
         return this;
@@ -88,7 +91,13 @@ public class DriverBuilder {
     }
 
     public DriverBuilder windowSize(int width, int height){
-        eventFiringWebDriver.manage().window().setSize(new Dimension(width,height));
+        this.width = width;
+        this.height = height;
+        return this;
+    }
+
+    public DriverBuilder isResponsive(){
+        isResponsive = true;
         return this;
     }
 
