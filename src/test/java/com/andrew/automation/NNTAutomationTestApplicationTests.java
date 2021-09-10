@@ -17,7 +17,7 @@ public class NNTAutomationTestApplicationTests {
     ChromeRunner<FullTestRunner> chromeFullTestRunner;
 
     @Resource(type = FullTestRunner.class)
-    FirefoxRunner firefoxFullTestRunner;
+    FirefoxRunner<FullTestRunner> firefoxFullTestRunner;
 
     @Test
     void fullTest() throws Exception {
