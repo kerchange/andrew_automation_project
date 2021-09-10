@@ -23,7 +23,7 @@ public class FullTestRunner extends TestRunner<FullTestRunner> {
         super.start();
         //TC001_LoginFlowTestCase
         new TestCaseBuilder().testCase(TC001_LoginFlowTestCase.class)
-                .driver(craeteDriver())
+                .driver(createResponsiveDriver())
                 .pages(LoginPage.class, GuidancePage.class)
                 .url(domain + "/login")
                 .run();

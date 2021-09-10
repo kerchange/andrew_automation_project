@@ -32,14 +32,32 @@ public class TestRunner<T extends TestRunner> implements ChromeRunner, FirefoxRu
         return (T)this;
     }
 
-    protected WebDriver craeteDriver() throws Exception {
+    protected WebDriver createDriver() throws Exception {
         WebDriver driver = null;
         if(Browser.Chrome.equals(this.browser)){
             driver = new DriverBuilder().browser(this.browser)
-                    .path("src/main/resources/chromedriver_m1_v92")
+                    .path("src/main/resources/chromedriver")
                     .option("--no-sandbox")
                     .option("--headless")
                     .option("--disable-gpu")
+                    .build();
+        }else if(Browser.Safari.equals(this.browser)){
+            //TODO
+        }else if(Browser.Firefox.equals(this.browser)) {
+            //TODO
+        }
+        return driver;
+    }
+
+    protected WebDriver createResponsiveDriver() throws Exception {
+        WebDriver driver = null;
+        if(Browser.Chrome.equals(this.browser)){
+            driver = new DriverBuilder().browser(this.browser)
+                    .path("src/main/resources/chromedriver")
+                    .option("--no-sandbox")
+                    .option("--headless")
+                    .option("--disable-gpu")
+                    .isResponsive()
                     .build();
         }else if(Browser.Safari.equals(this.browser)){
             //TODO

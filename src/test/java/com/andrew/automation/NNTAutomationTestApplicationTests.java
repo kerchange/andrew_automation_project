@@ -23,7 +23,7 @@ public class NNTAutomationTestApplicationTests {
     void fullTest() throws Exception {
         try{
             chromeFullTestRunner.chromeSetup().start();
-            firefoxFullTestRunner.firefoxSetup().start();
+//            firefoxFullTestRunner.firefoxSetup().start();
         }catch(Exception e){
             log.error("Full test error : ", e);
             throw e;
